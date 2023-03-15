@@ -2,6 +2,7 @@ import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 
 import './App.css';
+import { Transactions } from "./Transactions"
 
 // Refer to the README doc for more information about using API
 // keys in client-side code. You should never do this in production
@@ -30,9 +31,9 @@ function App() {
     }
 
     getBlockNumber();
-  });
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     async function getTransactions() {
       const blockRef= await alchemy.core.getBlockWithTransactions(blockNumber);
       setTimestamp(blockRef.timestamp);
@@ -47,6 +48,7 @@ function App() {
     <h1>Block Number: {blockNumber}</h1>
     <h2>Timestamp: {new Date(timestamp * 1_000).toLocaleString()}</h2>
     <h3>Transactions: {transactions && transactions.length}</h3>
+    <Transactions transactions={transactions} />
     </div>
   );
 }
