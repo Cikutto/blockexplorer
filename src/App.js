@@ -26,7 +26,7 @@ function App() {
   const [transactions, setTransactions] = useState();
 
   useEffect(() => {
-    async function getBlockNumber(String, Number) {
+    async function getBlockNumber() {
       setBlockNumber(await alchemy.core.getBlockNumber());
     }
 
